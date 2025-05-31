@@ -1,0 +1,58 @@
+.container{
+background-color: aqua;
+   height: 90vh;
+   width: 70vw;
+   margin: 30px auto;
+}
+
+.hf{
+   background-color: aliceblue;
+   text-align: center;
+   height: 15vh;
+   width: 100%;
+}
+
+menu{
+    margin: 0;
+    padding: 0;
+}
+
+
+adverts{
+    display: block;
+}
+
+menu,adverts{
+  background-color: lightblue;
+  width: 15vw;
+
+}
+
+
+section{
+    background-color: lightgreen;
+    width: 40vw;
+}
+
+menu,section,adverts{
+    height: 60vh;
+    float: left;
+
+}
+
+footer{
+clear: both;
+}
+
+.icons{
+    background-color: lightcoral;
+    color: white;
+    display: inline-block;
+    border-radius: 50%;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    line-height: 50px;
+}
