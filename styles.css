@@ -203,3 +203,20 @@ menu a.active {
   color: #fff;
   font-weight: 700;
 }
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+}
+.memes-nav a {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 1.2em;
+  color: #4e54c8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.memes-nav a:hover {
+  color: #222;
+  text-decoration: underline;
+}
