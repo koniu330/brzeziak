@@ -144,3 +144,9 @@ body.darkmode adverts {
 body.darkmode footer .icons a {
     background: #181c2e;
 }
+
+menu a.active {
+    background: #4e54c8;
+    color: #fff;
+    box-shadow: 0 2px 8px #4e54c823;
+}
