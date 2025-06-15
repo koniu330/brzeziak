@@ -57,19 +57,19 @@ function updateClock() {
 let clockInterval = null;
 
 function handleViewSwitch(viewNum) {
-  if (viewNum === "1") {
-    updateClock();
-    clockInterval = setInterval(updateClock, 1000);
-  } else if (clockInterval) {
-    clearInterval(clockInterval);
-    clockInterval = null;
+    if (viewNum === "1") {
+      updateClock();
+      clockInterval = setInterval(updateClock, 1000);
+    } else if (clockInterval) {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+  
+    // Dodaj obsługę kalendarza
+    if (viewNum === "2") {
+      showCalendar();
+    }
   }
-
-  // Dodaj obsługę kalendarza
-  if (viewNum === "2") {
-    showCalendar();
-  }
-}
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('menu a').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -103,6 +103,7 @@ function createCalendar(year, month) {
         th.textContent = d;
         row.appendChild(th);
     }
+    
 
     // Komórki dni miesiąca
     const tbody = table.createTBody();
@@ -141,6 +142,4 @@ function showCalendar() {
     calendarDiv.appendChild(header);
     calendarDiv.appendChild(createCalendar(now.getFullYear(), now.getMonth()));
 }
-
-
 
