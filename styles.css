@@ -56,3 +56,39 @@ clear: both;
     margin: 0;
     line-height: 50px;
 }
+
+body.darkmode {
+    background: #1a2035;
+    color: #f6f8fc;
+}
+
+body.darkmode .container {
+    background: #232946;
+    color: #fff;
+}
+
+body.darkmode header.hf, body.darkmode footer.hf {
+    background: linear-gradient(90deg, #232946 0%, #4e54c8 100%);
+    color: #fff;
+}
+
+body.darkmode menu {
+    background: #232946;
+}
+body.darkmode menu a {
+    color: #fff;
+}
+body.darkmode section {
+    background: #232946;
+}
+body.darkmode section > div {
+    background: #232946;
+    color: #fff;
+}
+body.darkmode adverts {
+    background: #181c2e;
+    color: #8f94fb;
+}
+body.darkmode footer .icons a {
+    background: #181c2e;
+}
