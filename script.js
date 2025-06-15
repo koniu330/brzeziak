@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // domyślnie zegar uruchamia się, jeśli startowy widok to 1
   handleViewSwitch("1");
 });
-
 function createCalendar(year, month) {
     const today = new Date();
     const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
@@ -104,8 +103,8 @@ function createCalendar(year, month) {
     // Komórki dni miesiąca
     const tbody = table.createTBody();
     let tr = tbody.insertRow();
-    let dayOfWeek = (firstDay.getDay() + 6) % 7; // Przesunięcie: poniedziałek = 0
-    for (let i = 0; i < dayOfWeek; i++) tr.insertCell(); // Puste przed początkiem
+    let dayOfWeek = (firstDay.getDay() + 6) % 7; // Poniedziałek jako 0
+    for (let i = 0; i < dayOfWeek; i++) tr.insertCell();
 
     for (let d = 1; d <= lastDay.getDate(); d++) {
         if (dayOfWeek === 7) {
@@ -122,21 +121,27 @@ function createCalendar(year, month) {
     return table;
 }
 
-// Po załadowaniu widoku menu 2:
 function showCalendar() {
     const now = new Date();
     const calendarDiv = document.getElementById('calendar');
-    calendarDiv.innerHTML = ''; // Wyczyszczenie poprzedniego kalendarza
+    if (!calendarDiv) return;
+    calendarDiv.innerHTML = '';
+    // Dodaj nagłówek miesiąca
+    const monthNames = [
+      'Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
+      'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'
+    ];
+    const header = document.createElement('h3');
+    header.style.margin = '0 0 10px 0';
+    header.textContent = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+    calendarDiv.appendChild(header);
     calendarDiv.appendChild(createCalendar(now.getFullYear(), now.getMonth()));
 }
 
-// Wywołaj showCalendar() gdy użytkownik przełącza na Menu 2
-// Jeśli masz już obsługę przełączania widoków, dodaj wywołanie showCalendar tam, gdzie pokazujesz widok 2
+// Automatycznie pokazuj kalendarz po przełączeniu na Menu 2:
 document.querySelectorAll('menu a[data-view]').forEach(link => {
     link.addEventListener('click', function() {
         const view = this.getAttribute('data-view');
-        if(view === "2") showCalendar();
+        if (view === "2") showCalendar();
     });
 });
-
-// Możesz też wywołać raz na starcie, jeśli Menu 2 jest domyślnie widoczne
