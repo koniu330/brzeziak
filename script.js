@@ -82,3 +82,61 @@ document.addEventListener('DOMContentLoaded', function () {
   // domyślnie zegar uruchamia się, jeśli startowy widok to 1
   handleViewSwitch("1");
 });
+
+function createCalendar(year, month) {
+    const today = new Date();
+    const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const table = document.createElement('table');
+    table.className = 'calendar-table';
+
+    // Nagłówki dni tygodnia
+    const days = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
+    const thead = table.createTHead();
+    const row = thead.insertRow();
+    for (let d of days) {
+        const th = document.createElement('th');
+        th.textContent = d;
+        row.appendChild(th);
+    }
+
+    // Komórki dni miesiąca
+    const tbody = table.createTBody();
+    let tr = tbody.insertRow();
+    let dayOfWeek = (firstDay.getDay() + 6) % 7; // Przesunięcie: poniedziałek = 0
+    for (let i = 0; i < dayOfWeek; i++) tr.insertCell(); // Puste przed początkiem
+
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+        if (dayOfWeek === 7) {
+            tr = tbody.insertRow();
+            dayOfWeek = 0;
+        }
+        const td = tr.insertCell();
+        td.textContent = d;
+        if (isCurrentMonth && d === today.getDate()) {
+            td.className = 'today';
+        }
+        dayOfWeek++;
+    }
+    return table;
+}
+
+// Po załadowaniu widoku menu 2:
+function showCalendar() {
+    const now = new Date();
+    const calendarDiv = document.getElementById('calendar');
+    calendarDiv.innerHTML = ''; // Wyczyszczenie poprzedniego kalendarza
+    calendarDiv.appendChild(createCalendar(now.getFullYear(), now.getMonth()));
+}
+
+// Wywołaj showCalendar() gdy użytkownik przełącza na Menu 2
+// Jeśli masz już obsługę przełączania widoków, dodaj wywołanie showCalendar tam, gdzie pokazujesz widok 2
+document.querySelectorAll('menu a[data-view]').forEach(link => {
+    link.addEventListener('click', function() {
+        const view = this.getAttribute('data-view');
+        if(view === "2") showCalendar();
+    });
+});
+
+// Możesz też wywołać raz na starcie, jeśli Menu 2 jest domyślnie widoczne
