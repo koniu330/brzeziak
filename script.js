@@ -64,8 +64,12 @@ function handleViewSwitch(viewNum) {
     clearInterval(clockInterval);
     clockInterval = null;
   }
-}
 
+  // Dodaj obsługę kalendarza
+  if (viewNum === "2") {
+    showCalendar();
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('menu a').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -138,10 +142,5 @@ function showCalendar() {
     calendarDiv.appendChild(createCalendar(now.getFullYear(), now.getMonth()));
 }
 
-// Automatycznie pokazuj kalendarz po przełączeniu na Menu 2:
-document.querySelectorAll('menu a[data-view]').forEach(link => {
-    link.addEventListener('click', function() {
-        const view = this.getAttribute('data-view');
-        if (view === "2") showCalendar();
-    });
+
 });
