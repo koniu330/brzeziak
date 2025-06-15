@@ -25,21 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(btn);
 });
 
-// script.js
 document.addEventListener('DOMContentLoaded', function () {
-    // Menu przełączające widoki
     document.querySelectorAll('menu a').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const viewNum = this.getAttribute('data-view');
             document.querySelectorAll('section .view').forEach(div => {
-                if(div.getAttribute('data-view') === viewNum) {
-                    div.style.display = '';
-                } else {
-                    div.style.display = 'none';
-                }
+                // Pokaż tylko wybrany widok
+                div.style.display = (div.getAttribute('data-view') === viewNum) ? '' : 'none';
             });
-            // Opcjonalnie: podświetlanie aktywnego menu
+            // Podświetlenie aktywnego menu
             document.querySelectorAll('menu a').forEach(a => a.classList.remove('active'));
             this.classList.add('active');
         });
