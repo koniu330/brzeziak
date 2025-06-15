@@ -40,3 +40,45 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+function updateClock() {
+  const clock = document.getElementById('clock');
+  if (clock) {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    clock.textContent = `${h}:${m}:${s}`;
+  }
+}
+
+// Odświeżaj zegar co sekundę tylko jeśli widoczny jest widok 1
+let clockInterval = null;
+
+function handleViewSwitch(viewNum) {
+  if (viewNum === "1") {
+    updateClock();
+    clockInterval = setInterval(updateClock, 1000);
+  } else if (clockInterval) {
+    clearInterval(clockInterval);
+    clockInterval = null;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('menu a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const viewNum = this.getAttribute('data-view');
+      document.querySelectorAll('section .view').forEach(div => {
+        div.style.display = (div.getAttribute('data-view') === viewNum) ? '' : 'none';
+      });
+      document.querySelectorAll('menu a').forEach(a => a.classList.remove('active'));
+      this.classList.add('active');
+      handleViewSwitch(viewNum);
+    });
+  });
+  // domyślnie zegar uruchamia się, jeśli startowy widok to 1
+  handleViewSwitch("1");
+});
