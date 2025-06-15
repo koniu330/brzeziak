@@ -14,36 +14,7 @@ adverts img {
     box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
 
-#calendar {
-  display: inline-block;
-  padding: 15px;
-  border-radius: 12px;
-  background: #f8f8f8;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  margin: 20px auto;
-  font-family: Montserrat, Arial, sans-serif;
-}
-.calendar-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-.calendar-table th,
-.calendar-table td {
-  width: 32px;
-  height: 32px;
-  text-align: center;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-.calendar-table th {
-  color: #999;
-  font-weight: 600;
-}
-.calendar-table td.today {
-  background: #4caf50;
-  color: #fff;
-  font-weight: 700;
-}
+
 
 .container {
     max-width: 950px;
@@ -195,4 +166,40 @@ menu a.active {
     justify-content: center;
     align-items: center;
     min-height: 200px; /* dostosuj według potrzeb */
+}
+
+#calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px;
+  border-radius: 10px;
+  background: #f6f6f6;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 18px auto;
+  font-family: Montserrat, Arial, sans-serif;
+  max-width: 320px;
+}
+.calendar-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+}
+.calendar-table th,
+.calendar-table td {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.calendar-table th {
+  color: #888;
+  font-weight: 600;
+  padding: 3px 0;
+}
+.calendar-table td.today {
+  background: #4caf50;
+  color: #fff;
+  font-weight: 700;
 }
